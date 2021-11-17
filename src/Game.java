@@ -32,17 +32,21 @@ public class Game {
             return r < to2(x1 + x2) + to2(y1 + y1);
         }
     }
-    public static void tick(){
+    public static void tick(int dt){
         for(int i = 0; i < PhysicObject.instances.size(); i++) {
             PhysicObject physicObject = PhysicObject.instances.get(i).get();
             if (physicObject != null) {
                 double distanceToCenterMass = PhysicObject.distance(X_CENTER_OF_MASS, Y_CENTER_OF_MASS, physicObject.getX(), physicObject.getY());
                 System.out.println("Distance:" + distanceToCenterMass);
-                physicObject.setVx(Math.sqrt(2 * GRAVITY_ACCELERATION * distanceToCenterMass));
+                physicObject.setVx(Math.sqrt(2 * GRAVITY_ACCELERATION * distanceToCenterMass) * dt);
 
-                physicObject.tick();
+                physicObject.tick(dt);
             }
         }
+    }
+
+    public static void tick(){
+        tick(1);
     }
 
     private static double to2(double a){

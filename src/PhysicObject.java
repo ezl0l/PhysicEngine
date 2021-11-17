@@ -7,6 +7,8 @@ public class PhysicObject extends GameObject{
     private double y = 0;
     private double vx;
     private double vy;
+    private double ax;
+    private double ay;
     private double weight;
     private double temperature;
     private int durability;
@@ -32,6 +34,8 @@ public class PhysicObject extends GameObject{
     }
 
     public void tick(int dt){
+        vx += ax;
+        vy += ay;
         x += vx;
         y += vy;
     }
@@ -84,6 +88,24 @@ public class PhysicObject extends GameObject{
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    public double getAx() {
+        return ax;
+    }
+
+    public PhysicObject setAx(double ax) {
+        this.ax = ax;
+        return this;
+    }
+
+    public double getAy() {
+        return ay;
+    }
+
+    public PhysicObject setAy(double ay) {
+        this.ay = ay;
+        return this;
     }
 
     public double getTemperature() {
